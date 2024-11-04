@@ -1,0 +1,25 @@
+.header {
+  z-index: 1030;
+  border: 0;
+  transition: 0.5s;
+  .topbar {
+    border-radius: 230px 100px;
+  }
+  .nav-link {
+    transition: 0.5s;
+  }
+  .btn-search {
+    transition: 0.5s;
+  }
+  .icon {
+    &:hover {
+      color: #679d06;
+    }
+  }
+  .number-order{
+    top: -5px;
+    left: 20px;
+    height: 20px;
+    min-width: 20px;
+  }
+}
