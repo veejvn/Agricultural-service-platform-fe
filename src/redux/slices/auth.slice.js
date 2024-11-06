@@ -4,7 +4,7 @@ import { getLS } from "@tools/localStorage.tool";
 const authSlice = createSlice({
   name: "auth",
   initialState: getLS("auth", {
-    tokens: { accessToken: "", refeshToken: "" },
+    tokens: { accessToken: "", refreshToken: "" },
     user: null,
     isLoging: false,
     redirect: "/",
@@ -12,7 +12,7 @@ const authSlice = createSlice({
   reducers: {
     setTokens: (state, { payload }) => {
       state.tokens.accessToken = payload.accessToken;
-      state.tokens.refeshToken = payload.refeshToken;
+      state.tokens.refreshToken = payload.refreshToken;
     },
     setAccessToken: (state, { payload }) => {
       state.tokens.accessToken = payload;

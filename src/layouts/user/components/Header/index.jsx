@@ -1,8 +1,15 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
+import { useSelector } from "react-redux";
 import "./Header.scss"
+import imgNoAvatar from "@assets/images/no-avatar.png"
+
 
 function Header() {
+    const isLoging = useSelector((state) => state.auth.isLoging);
+    const user = useSelector((state) => state.auth.user);
+    const avatar = user?.avatar || imgNoAvatar;
+
     return (
         <header className="container mx-auto px-3 fixed inset-x-0 top-0 header">
             <div className="container block p-6 topbar bg-primary"></div>
@@ -18,20 +25,34 @@ function Header() {
                             <NavLink to="/market" className={({ isActive }) => isActive ? "py-2.5 px-4 text-base nav-link hover:text-primary text-primary" : "py-2.5 px-4 text-base nav-link hover:text-primary"}>Thị trường</NavLink>
                             <NavLink to="/forum" className={({ isActive }) => isActive ? "py-2.5 px-4 text-base nav-link hover:text-primary text-primary" : "py-2.5 px-4 text-base nav-link hover:text-primary"}>Diễn đàn</NavLink>
                         </div>
-                        <div className="flex m-4 me-0">
-                            <button className="flex p-0 items-center justify-center font-normal w-11 h-11 rounded-full mr-6 border border-solid border-orange-400 hover:bg-orange-300 select-none btn-search">
-                                <FaSearch className="icon text-primary size-4"/>
-                            </button>
-                            <NavLink to="/cart" className="relative me-6 my-auto">
-                                <FaShoppingCart className="icon text-primary size-8" />
-                                <span className="absolute rounded-full flex items-center justify-center text-black px-1 number-order bg-secondary">
-                                    3
-                                </span>
-                            </NavLink>
-                            <NavLink to="/account" className="my-auto">
-                                <FaUser className="icon text-primary size-8"/>
-                            </NavLink>
-                        </div>
+                        {!isLoging ?
+                            <div>
+                                <Link to="/login" className="mx-3 hover:underline hover:text-[#b7ea59] text-primary text-base">Đăng nhập</Link>
+                                <Link to="/register" className="mx-3 hover:underline hover:text-[#b7ea59] text-primary text-base">Đăng ký</Link>
+                            </div>
+                            : <div className="flex my-4 mx-auto">
+                                <button className="flex p-0 items-center justify-center font-normal size-11 mx-auto rounded-full border border-solid border-primary hover:bg-[#b8ef52] select-none btn-search">
+                                    <FaSearch className="text-primary size-4" />
+                                </button>
+                                <div className="flex size-12 mx-4">
+                                    <NavLink to="/cart" className="relative m-auto">
+                                        <FaShoppingCart className="hover:text-[#679d06] text-primary size-8 hover:size-9 transition" />
+                                        <span className="absolute rounded-full flex items-center justify-center text-black px-1 number-order bg-secondary">
+                                            3
+                                        </span>
+                                    </NavLink>
+                                </div>
+                                {/* <FaUser className="icon text-primary size-8" /> */}
+                                <div className="flex size-12">
+                                    <NavLink to="/account" className="w-10 h-10 m-auto hover:size-12 transition">
+                                        {avatar ?
+                                            <img src={avatar} className="rounded-full"></img>
+                                            : <img src={imgNoAvatar} className="rounded-full" />
+                                        }
+                                    </NavLink>
+                                </div>
+                            </div>
+                        }
                     </div>
                 </nav>
             </div>

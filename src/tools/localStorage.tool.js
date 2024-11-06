@@ -1,6 +1,6 @@
 function setLS(key, value) {
   try {
-    localStorage.setItem(ket, JSON.stringify(value));
+    localStorage.setItem(key, JSON.stringify(value));
     return value;
   } catch (error) {
     console.error(`Error setting localStorage key '${key}':`, error);

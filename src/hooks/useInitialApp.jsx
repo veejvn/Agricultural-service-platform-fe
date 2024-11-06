@@ -1,6 +1,7 @@
-import { setAccessToken, setIsLogin, setTokens } from "@redux/slices/auth.slice";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import AuthService from "service/auth.service";
+import AuthService from "@services/auth.service";
+import env from "@configs/env.config";
 
 import {
     setAccessToken,
@@ -8,9 +9,6 @@ import {
     setUser,
     setIsLogin
 } from "@redux/slices/auth.slice"
-
-import env from "@configs/env.config";
-import { useEffect } from "react";
 
 const useInitialApp = () => {
     const dispatch = useDispatch();
@@ -20,36 +18,36 @@ const useInitialApp = () => {
     );
 
     const refreshToken = async () => {
-        const[result, error] = await AuthService.refreshToken();
-        if(error){
+        const [result, error] = await AuthService.refreshToken();
+        if (error) {
             dispatch(setIsLogin(false));
-            dispatch(setTokens({accessToken: "", refreshToken: ""}));
+            dispatch(setTokens({ accessToken: "", refreshToken: "" }));
             return;
         }
-        const {accessToken} = result.data;
+        const { accessToken } = result.data;
         dispatch(setAccessToken(accessToken));
         dispatch(setIsLogin(true));
     };
 
     const fetchUser = async () => {
-        const [result, error] =  await AuthService.getUserInfo();
-        if(error){
+        const [result, error] = await AuthService.getUserInfo();
+        if (error) {
             dispatch(setUser(null));
             return;
         }
         dispatch(setUser(result.data));
     }
 
-    const fetchData = async () =>{
+    const fetchData = async () => {
         await refreshToken();
-        if(!isLoging) return;
+        if (!isLoging) return;
         await fetchUser();
     };
 
     useEffect(() => {
         fetchData();
-        if(!isLoging) return;
-        const intervalId = setInterval(refreshToken , env.interval_refresh_token);
+        if (!isLoging) return;
+        const intervalId = setInterval(refreshToken, env.interval_refresh_token);
         return () => clearInterval(intervalId);
     }, [dispatch, isLoging, refreshTokenString]);
 };
