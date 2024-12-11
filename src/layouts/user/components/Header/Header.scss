@@ -1,14 +1,12 @@
 .header {
-  z-index: 1030;
+  z-index: 1;
   border: 0;
   transition: 0.5s;
   .topbar {
+    z-index: 1;
     border-radius: 230px 100px;
   }
   .nav-link {
-    transition: 0.5s;
-  }
-  .btn-search {
     transition: 0.5s;
   }
   .icon {

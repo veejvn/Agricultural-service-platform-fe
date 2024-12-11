@@ -25,7 +25,7 @@ const AuthService = {
     );
   },
   forgotPassword(email) {
-    return service(axios.post(getAuthUrl("forgot-password"), { email }));
+    return service(axios.post(getAuthUrl("/forgot-password"), { email }));
   },
   forgotPasswordVerify({ newPassword, code }) {
     return service(

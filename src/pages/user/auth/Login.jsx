@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import useMessageByApiCode from "@hooks/useMessageByApiCode";
-import { setTokens } from "@redux/slices/auth.slice";
+import { setRedirect, setTokens } from "@redux/slices/auth.slice";
 import AuthService from "@services/auth.service";
 
 const Login = () => {
@@ -47,6 +47,7 @@ const Login = () => {
         })
         const tokens = result.data;
         dispatch(setTokens(tokens));
+        dispatch(setRedirect("/"))
         navigate(redirect);
     }
 
@@ -60,7 +61,7 @@ const Login = () => {
 
     return (
         <section className="flex items-center justify-center min-h-screen ">
-            <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0">
+            <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
                 <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                         Đăng nhập

@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import "./MainLayout.scss"
 
 
-const MaintLayout = ({ children }) => {
+const MainLayout = ({ children }) => {
     return (
         <Fragment>
             <Header />
@@ -15,4 +15,4 @@ const MaintLayout = ({ children }) => {
     );
 }
 
-export default MaintLayout;
+export default MainLayout;

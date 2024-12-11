@@ -1,12 +1,11 @@
 import { Fragment } from 'react'
 
-import MaintLayout from '@layouts/user/MainLayout'
+import MainLayout from '@layouts/user/MainLayout'
 import AuthLayout from '@layouts/user/AuthLayout'
 import { USER_ROUTE_TYPES } from '../routeTypes/routeTypes'
 
 import Home from '@pages/user/Home'
-import Shop from '@pages/user/Shop'
-import Search from '@pages/user/Search'
+import Product from '@pages/user/Product'
 import Market from '@pages/user/Market'
 import Forum from '@pages/user/Forum'
 import Account from '@pages/user/Account'
@@ -15,56 +14,25 @@ import Login from '@pages/user/auth/Login'
 import Logout from '@pages/user/auth/Logout'
 import Register from '@pages/user/auth/Register'
 import ReceiveTokens from '@pages/user/auth/ReceiveTokens'
+import ForgotPassword from '@pages/user/auth/ForgotPassword'
+import AccountLayout from '@layouts/user/AccountLayout'
+import NotFound from '@pages/user/NotFound'
+import Orders from '@pages/user/Orders'
 
-export default[
+export default [
     {
         path: "/",
         Page: Home,
-        Layout: MaintLayout,
+        Layout: MainLayout,
         type: USER_ROUTE_TYPES.PUBLIC,
         title: "Trang chủ",
     },
     {
         path: "/home",
         Page: Home,
-        Layout: MaintLayout,
+        Layout: MainLayout,
         type: USER_ROUTE_TYPES.PUBLIC,
         title: "Trang chủ",
-    },
-    {
-        path: "/shop",
-        Page: Shop,
-        Layout: MaintLayout,
-        type: USER_ROUTE_TYPES.PUBLIC,
-        title: "Mua sắm",
-    },
-    {
-        path: "/market",
-        Page: Market,
-        Layout: MaintLayout,
-        type: USER_ROUTE_TYPES.PUBLIC,
-        title: "Thị trường",
-    },
-    {
-        path: "/forum",
-        Page: Forum,
-        Layout: MaintLayout,
-        type: USER_ROUTE_TYPES.PUBLIC,
-        title: "Diễn đàn",
-    },
-    {
-        path: "/cart",
-        Page: Cart,
-        Layout: MaintLayout,
-        type: USER_ROUTE_TYPES.PUBLIC,
-        title: "Giở hàng",
-    },
-    {
-        path: "/account",
-        Page: Account,
-        Layout: MaintLayout,
-        type: USER_ROUTE_TYPES.PUBLIC,
-        title: "Tài khoản",
     },
     {
         path: "/register",
@@ -93,5 +61,68 @@ export default[
         Layout: Fragment,
         type: USER_ROUTE_TYPES.PUBLIC,
         title: "Đăng xuất",
+    },
+    {
+        path: "/forgot-password",
+        Page: ForgotPassword,
+        Layout: AuthLayout,
+        type: USER_ROUTE_TYPES.PUBLIC,
+        title: "Quên mật khẩu",
+    },
+    {
+        path: "/shop",
+        Page: Product,
+        Layout: MainLayout,
+        type: USER_ROUTE_TYPES.PUBLIC,
+        title: "Sản phẩm",
+    },
+    {
+        path: "/market",
+        Page: Market,
+        Layout: MainLayout,
+        type: USER_ROUTE_TYPES.PUBLIC,
+        title: "Thị trường",
+    },
+    {
+        path: "/forum",
+        Page: Forum,
+        Layout: MainLayout,
+        type: USER_ROUTE_TYPES.PUBLIC,
+        title: "Diễn đàn",
+    },
+    {
+        path: "/cart",
+        Page: Cart,
+        Layout: MainLayout,
+        type: USER_ROUTE_TYPES.PRIVATE,
+        title: "Giỏ hàng",
+    },
+    {
+        path: "/account/:page",
+        Page: Account,
+        Layout: AccountLayout,
+        type: USER_ROUTE_TYPES.PRIVATE,
+        title: "Tài khoản",
+    },
+    {
+        path: "/orders/:page",
+        Page: Orders,
+        Layout: AccountLayout,
+        type: USER_ROUTE_TYPES.PRIVATE,
+        title: "Đơn hàng",
+    },
+    {
+        path: "/404",
+        Page: NotFound,
+        Layout: MainLayout,
+        type: USER_ROUTE_TYPES.PUBLIC,
+        title: "Không tìm thấy trang",
+    },
+    {
+        path: "*",
+        Page: NotFound,
+        Layout: MainLayout,
+        type: USER_ROUTE_TYPES.PUBLIC,
+        title: "Không tìm thấy trang",
     },
 ];

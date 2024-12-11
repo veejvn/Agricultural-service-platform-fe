@@ -14,4 +14,22 @@ const USER_ROUTE_TYPES = {
     ),
 }
 
-export { USER_ROUTE_TYPES }
+const FARMER_ROUTE_TYPES = {
+    PUBLIC: PublicRoute,
+    PRIVATE: ({ children }) => (
+        <PrivateRoute AccessDeniedLayout={UserMainLayout} role={ROLES.FARMER}>
+            {children}
+        </PrivateRoute>
+    ),
+}
+
+const ADMIN_ROUTE_TYPES = {
+    PUBLIC: PublicRoute,
+    PRIVATE: ({ children }) => (
+        <PrivateRoute AccessDeniedLayout={UserMainLayout} role={ROLES.ADMIN}>
+            {children}
+        </PrivateRoute>
+    ),
+}
+
+export { USER_ROUTE_TYPES, FARMER_ROUTE_TYPES, ADMIN_ROUTE_TYPES }

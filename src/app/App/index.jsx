@@ -10,7 +10,16 @@ import "./global.css";
 function App() {
   useInitialApp()
   return (
-    <ConfigProvider>
+    <ConfigProvider
+    theme={{
+      token: {
+        colorPrimary: "#81c408",
+        colorSuccess: "#3b82f6",
+        colorWarning: "#ffd43b",
+        colorError: "#ff3300",
+      },
+    }}
+    >
       <AntApp>
         <Router></Router>
         <ToastContainer />
