@@ -11,7 +11,7 @@ const contentStyle = {
 
 function Home() {
     return (
-        <div className="container-fluid py-5 mb-5 bg-center bg-no-repeat bg-cover  hero-header"
+        <div className="container-fluid py-5 mb-5 bg-center bg-no-repeat bg-cover hero-header"
             style={{
                 backgroundImage: `linear-gradient(rgba(248, 223, 173, 0.1), rgba(248, 223, 173, 0.1))`,
             }}
